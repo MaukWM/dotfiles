@@ -192,9 +192,6 @@ focus_follows_mouse no
 # Start script that periodically changes the background image to a random one in ~/Pictures/wallpapers
 exec /home/mauk/.scripts/random_wallpaper.sh
 
-# Lock screen button
-bindsym $mod+Shift+o exec fish /home/mauk/.scripts/lock.sh
-
 # Screenshot 
 # bindsym Print exec "scrot ~/Pictures/screenshot-%b%d::%H:%M:%S.png"
 #bindsym --release $mod+p exec scrot 
@@ -220,8 +217,7 @@ exec safeeyes
 exec nm-applet
 
 # Launch my polybar
-exec --no-startup-id polybar -r -c ~/.config/polybar/polybar top
-exec --no-startup-id polybar -r -c ~/.config/polybar/polybar bot
+exec --no-startup-id polybar -r -c ~/.config/polybar/mountains space
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
