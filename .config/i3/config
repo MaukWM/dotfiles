@@ -48,12 +48,14 @@ bindsym $mod+Shift+q kill
 # jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start rofi (a program launcher)
+bindsym $mod+d exec rofi -show combi -combi-modi "window#run#ssh" -modi combi -theme solarized
+
+#gaps 
+#Normal: 8, 8
+gaps inner 20
+gaps outer 10
+#smart_gaps on
 
 # change focus
 bindsym $mod+$left focus left
@@ -143,6 +145,9 @@ bindsym $mod+Shift+r restart; exec "pkill -USR1 polybar"
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Allow for floating windows
+bindsym $mod+t mode "move" focus floating
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -186,11 +191,24 @@ new_window normal
 hide_edge_borders vertical
 for_window [class="^.*"] border pixel 0
 
+# Transparent tiles
+#exec --no-startup-id compton --respect-prop-shadow
+
+# Compton
+#exec compton --config ~/.config/compton/compton.conf
+#exec compton -bcCGf -i 0.80 -e 0.80 --no-fading-openclose --sw-opti
+#exec compton --config /home/mauk/.config/compton/compton.conf -bcCGF 
+exec --no-startup-id compton --config ~/.config/compton/compton.conf -bcCGf -i 0.80 -e 0.80 --no-fading-openclose --sw-opti
+
+
 # Set focus to not follow the mouse
 focus_follows_mouse no
 
 # Start script that periodically changes the background image to a random one in ~/Pictures/wallpapers
-exec /home/mauk/.scripts/random_wallpaper.sh
+# exec /home/mauk/.scripts/random_wallpaper.sh
+
+# Set background to red_trees
+exec feh --bg-scale /home/mauk/Pictures/Wallpapers/red_trees.jpg
 
 # Lock screen button
 bindsym $mod+Shift+o exec fish /home/mauk/.scripts/lock.sh
@@ -209,7 +227,6 @@ exec /home/mauk/.scripts/setup_i3_layout.sh
 # Start programs to fill layouts
 exec i3-sensible-terminal
 exec chromium-browser
-exec steam
 exec discord
 exec telegram-desktop
 

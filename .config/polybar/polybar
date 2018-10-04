@@ -11,7 +11,7 @@
 background = #070809
 background-alt = #2E2F38
 foreground = #EBECE6
-foreground-alt = #D1FFFA
+foreground-alt = #E0FFF9
 
 primary = #8BE9FD
 secondary = #4B1EED
@@ -301,6 +301,10 @@ type = internal/battery
 battery = BAT0
 adapter = ADP1
 full-at = 100
+
+
+label-charging-foreground = ${colors.foreground-alt}
+label-discharging-foreground = ${colors.foreground-alt}
 
 format-charging = <animation-charging> <label-charging>
 format-charging-foreground = ${colors.foreground-alt}
