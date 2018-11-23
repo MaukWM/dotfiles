@@ -1,22 +1,21 @@
 // vim:ts=4:sw=4:et
 {
-    "border": "normal",
-    "current_border_width": 2,
+    "border": "pixel",
+    "current_border_width": 0,
     "floating": "auto_off",
     "geometry": {
-       "height": 1041,
-       "width": 1916,
-       "x": 2,
-       "y": 37
+       "height": 960,
+       "width": 1860,
+       "x": 30,
+       "y": 60
     },
-    "name": "New Tab - Chromium",
+    "name": "i3: Layout saving in i3 - Vivaldi",
     "percent": 1,
     "swallows": [
        {
-        "class": "^Chromium\\-browser$",
-        "instance": "^chromium\\-browser$"
-       // "title": "^New\\ Tab\\ \\-\\ Chromium$",
-       // "transient_for": "^$",
+       "class": "^Vivaldi\\-stable$",
+       "instance": "^vivaldi\\-stable$"
+       // "title": "^i3\\:\\ Layout\\ saving\\ in\\ i3\\ \\-\\ Vivaldi$",
        // "window_role": "^browser$"
        }
     ],

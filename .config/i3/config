@@ -57,6 +57,43 @@ gaps inner 20
 gaps outer 10
 #smart_gaps on
 
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+ 
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+ 
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+ 
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+ 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+ 
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+ 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -191,15 +228,8 @@ new_window normal
 hide_edge_borders vertical
 for_window [class="^.*"] border pixel 0
 
-# Transparent tiles
-#exec --no-startup-id compton --respect-prop-shadow
-
 # Compton
-#exec compton --config ~/.config/compton/compton.conf
-#exec compton -bcCGf -i 0.80 -e 0.80 --no-fading-openclose --sw-opti
-#exec compton --config /home/mauk/.config/compton/compton.conf -bcCGF 
-exec --no-startup-id compton --config ~/.config/compton/compton.conf -bcCGf -i 0.80 -e 0.80 --no-fading-openclose --sw-opti
-
+exec --no-startup-id compton --config ~/.config/compton/compton.conf #-bcCGf -i 0.80 -e 0.80 --no-fading-openclose --sw-opti
 
 # Set focus to not follow the mouse
 focus_follows_mouse no
@@ -208,15 +238,16 @@ focus_follows_mouse no
 # exec /home/mauk/.scripts/random_wallpaper.sh
 
 # Set background to red_trees
-exec feh --bg-scale /home/mauk/Pictures/Wallpapers/red_trees.jpg
+exec feh --bg-scale /home/mauk/Pictures/Wallpapers/red_trees_hr.jpg
 
-# Lock screen button
+# Lock screen button - blur
 bindsym $mod+Shift+o exec fish /home/mauk/.scripts/lock.sh
+
+# Lock screen button - pixelate
+bindsym $mod+Ctrl+Shift+o exec i3lock-fancy -t "" -p -- scrot -z
 
 # Screenshot 
 # bindsym Print exec "scrot ~/Pictures/screenshot-%b%d::%H:%M:%S.png"
-#bindsym --release $mod+p exec scrot 
-#bindsym --release $mod+Shift+p exec scrot -s
 bindsym --release Shift+Print exec scrot -s ~/Pictures/screenshots/%b%d::%H:%M:%S.png
 bindsym --release Print exec --no-startup-id scrot ~/Pictures/screenshots/%b%d::%H:%M:%S.png
 bindsym --release $mod+Shift+Print exec scrot -u -d 4 ~/Pictures/screenshots/%b%d::%H:%M:%S.png
@@ -226,12 +257,12 @@ exec /home/mauk/.scripts/setup_i3_layout.sh
 
 # Start programs to fill layouts
 exec i3-sensible-terminal
-exec chromium-browser
+exec vivaldi-stable
 exec discord
 exec telegram-desktop
 
-# Launch safeyes
-exec safeeyes
+# Launch workrave
+exec workrave
 
 # Launch nm-applet
 exec nm-applet
@@ -239,21 +270,3 @@ exec nm-applet
 # Launch my polybar
 exec --no-startup-id polybar -r -c ~/.config/polybar/polybar top
 exec --no-startup-id polybar -r -c ~/.config/polybar/polybar bot
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#	status_command i3status
-#	position top
-#}
-
-#######################################################################
-# automatically start i3-config-wizard to offer the user to create a
-# keysym-based config which used their favorite modifier (alt or windows)
-#
-# i3-config-wizard will not launch if there already is a config file
-# in ~/.i3/config.
-#
-# Please remove the following exec line:
-#######################################################################
-#exec i3-config-wizard

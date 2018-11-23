@@ -13,8 +13,8 @@
     "percent": 0.5,
     "swallows": [
        {
-       // "class": "^discord$",
-       // "instance": "^discord$",
+       "class": "^discord$",
+       "instance": "^discord$"
        // "title": "^Discord$",
        // "transient_for": "^$",
        // "window_role": "^browser\\-window$"
@@ -37,8 +37,8 @@
     "percent": 0.5,
     "swallows": [
        {
-       // "class": "^TelegramDesktop$",
-       // "instance": "^Telegram$",
+       "class": "^TelegramDesktop$",
+       "instance": "^Telegram$"
        // "title": "^Telegram$",
        // "transient_for": "^$"
        }
